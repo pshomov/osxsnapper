@@ -1,9 +1,8 @@
-module OSX
   class CIImage      
-    def save(target, format = OSX::NSJPEGFileType, properties = nil)
-      bitmapRep = OSX::NSBitmapImageRep.alloc.initWithCIImage(self)
-      blob = bitmapRep.representationUsingType_properties(format, properties)
-      blob.writeToFile_atomically(target, false)
+    def save(target, format = NSJPEGFileType, properties = nil)
+      bitmapRep = NSBitmapImageRep.alloc.initWithCIImage(self)
+      blob = bitmapRep.representationUsingType(format, properties:properties)
+      blob.writeToFile(target, atomically:false)
     end
 
     def cgimage
@@ -15,4 +14,3 @@ module OSX
       OSX::CIImage.imageWithContentsOfURL(OSX::NSURL.fileURLWithPath(filepath))
     end
   end
-end
